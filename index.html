@@ -151,81 +151,9 @@
         updateBtn.addEventListener("click", UpdateData);
         removeBtn.addEventListener("click", RemoveData);
     </script>
-</body>
-</html>
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
 
-        import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    
-        const database = getDatabase();
-
-        var enterID = document.querySelector("#enterID");
-        var enterName = document.querySelector("#enterName");
-        var findID = document.querySelector("#findID");
-        var findName = document.querySelector("#findName");
-
-        var insertBtn = document.querySelector("#insert");
-        var updateBtn = document.querySelector("#update");
-        var removeBtn = document.querySelector("#remove");
-        var findBtn = document.querySelector("#find");
-
-        function InsertData() {
-            set(ref(database, 'users/' + enterID.value), {
-                name: enterName.value,
-                ID: enterID.value,
-            })
-            .then(() => {
-                alert('Data inserted');
-            })
-            .catch((error) => {
-                alert('Data not inserted');
-            });
-        }
-
-        function FindData() {
-            const dbRef = ref(database);
-            get(child(dbRef, `users/${findID.value}`)).then((snapshot) => {
-                if (snapshot.exists()) {
-                    findName.innerHTML = "Name: " + snapshot.val().name;
-                } else {
-                    findName.innerHTML = "No data available";
-                }
-            }).catch((error) => {
-                alert('Data not found');
-            });
-        }
-
-        function UpdateData() {
-            update(ref(database, 'users/' + enterID.value), {
-                name: enterName.value
-            })
-            .then(() => {
-                alert('Data updated');
-            })
-            .catch((error) => {
-                alert('Data not updated');
-            });
-        }
-
-        function RemoveData() {
-            remove(ref(database, 'users/' + enterID.value))
-            .then(() => {
-                alert('Data removed');
-            })
-            .catch((error) => {
-                alert('Data not removed');
-            });
-        }   
-
-        insertBtn.addEventListener("click", InsertData);
-        updateBtn.addEventListener("click", UpdateData);
-        removeBtn.addEventListener("click", RemoveData);
-        findBtn.addEventListener("click", FindData);
-    </script>
     <iframe src="https://thunkable.site/w/XkrcF_OLGSBSGy3EIGjyo" title="Profile App" height = 1000 width = 500></iframe>
+   
 </body>
 </html>
 
