@@ -17,7 +17,16 @@
         <input id="enterID" type="text">
 
         <h4>Name</h4>
-        <input id="enterName" type="text"> <br><br>
+        <input id="enterName" type="text">
+
+        <h4>Birthday</h4>
+        <input id="enterBirthday" type="text">
+
+        <h4>Gender</h4>
+        <input id="enterGender" type="text">
+
+        <h4>Favorite Color</h4>
+        <input id="enterColor" type="text"> <br><br>
 
         <button id="insert">Insert</button>
         <button id="update">Update</button>
@@ -29,7 +38,10 @@
         <input id="findID" type="text"> <br><br>
         <button id="find">Find</button>
 
-        <h3 id="findName" type="text"></h3> <br><br>
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findBirthday" type="text"></h3>
+        <h3 id="findGender" type="text"></h3>
+        <h3 id="findColor" type="text"></h3> <br><br>
     </div>  
 
     <script type="module">
@@ -49,6 +61,98 @@
         messagingSenderId: "304407488274",
         appId: "1:304407488274:web:0793713041a75cfeccb5cb",
         measurementId: "G-3D7MDT3QC3"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, set, child, get, update, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    
+        const database = getDatabase();
+
+        var enterID = document.querySelector("#enterID");
+        var enterName = document.querySelector("#enterName");
+        var enterBirthday = document.querySelector("#enterBirthday");
+        var enterGender = document.querySelector("#enterGender");
+        var enterColor = document.querySelector("#enterColor");
+        var findID = document.querySelector("#findID");
+        var findName = document.querySelector("#findName");
+        var findBirthday = document.querySelector("#findBirthday");
+        var findGender = document.querySelector("#findGender");
+        var findColor = document.querySelector("#findColor");
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData() {
+            set(ref(database, 'users/' + enterID.value), {
+                name: enterName.value,
+                ID: enterID.value,
+                birthday: enterBirthday.value,
+                gender: enterGender.value,
+                color: enterColor.value
+            })
+            .then(() => {
+                alert('Data inserted');
+            })
+            .catch((error) => {
+                alert('Data not inserted');
+            });
+        }
+
+        function FindData() {
+            const dbRef = ref(database);
+            get(child(dbRef, `users/${findID.value}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    findName.innerHTML = "Name: " + snapshot.val().name;
+                    findBirthday.innerHTML = "Birthday: " + snapshot.val().birthday;
+                    findGender.innerHTML = "Gender: " + snapshot.val().gender;
+                    findColor.innerHTML = "Favorite Color: " + snapshot.val().color;
+                } else {
+                    findName.innerHTML = "No data available";
+                    findBirthday.innerHTML = "";
+                    findGender.innerHTML = "";
+                    findColor.innerHTML = "";
+                }
+            }).catch((error) => {
+                alert('Data not found');
+            });
+        }
+
+        function UpdateData() {
+            update(ref(database, 'users/' + enterID.value), {
+                name: enterName.value,
+                birthday: enterBirthday.value,
+                gender: enterGender.value,
+                color: enterColor.value
+            })
+            .then(() => {
+                alert('Data updated');
+            })
+            .catch((error) => {
+                alert('Data not updated');
+            });
+        }
+
+        function RemoveData() {
+            remove(ref(database, 'users/' + enterID.value))
+            .then(() => {
+                alert('Data removed');
+            })
+            .catch((error) => {
+                alert('Data not removed');
+            });
+        }
+
+        insertBtn.addEventListener("click", InsertData);
+        findBtn.addEventListener("click", FindData);
+        updateBtn.addEventListener("click", UpdateData);
+        removeBtn.addEventListener("click", RemoveData);
+    </script>
+</body>
+</html>
         };
     
         // Initialize Firebase
@@ -82,15 +186,38 @@
         }
 
         function FindData() {
-
+            const dbRef = ref(database);
+            get(child(dbRef, `users/${findID.value}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    findName.innerHTML = "Name: " + snapshot.val().name;
+                } else {
+                    findName.innerHTML = "No data available";
+                }
+            }).catch((error) => {
+                alert('Data not found');
+            });
         }
 
         function UpdateData() {
-
+            update(ref(database, 'users/' + enterID.value), {
+                name: enterName.value
+            })
+            .then(() => {
+                alert('Data updated');
+            })
+            .catch((error) => {
+                alert('Data not updated');
+            });
         }
 
         function RemoveData() {
-
+            remove(ref(database, 'users/' + enterID.value))
+            .then(() => {
+                alert('Data removed');
+            })
+            .catch((error) => {
+                alert('Data not removed');
+            });
         }   
 
         insertBtn.addEventListener("click", InsertData);
