@@ -4,38 +4,53 @@
     <title>My Thunkable App</title>
 </head>
 <body>
+    <div id="enterDetails">
+        <h1>Enter details</h1>
+        <h4>ID</h4>
+        <input id="enterID" type="text">
+
+        <h4>Name</h4>
+        <input id="enterName" type="text">
+
+        <button id="insert">Insert</button>
+        <button id="update">Update</button>
+        <button id="remove">Remove</button>
+    </div>
+    <div id="findDetails">
+        <h1>Find details</h1>
+        <h4>ID</h4>
+        <input id="findID" type="text"> <br><br>
+        <button id="find">Find</button>
+
+        <h3 id="findName" type="text"></h3> <br><br>
+    </div>
     <h1>Welcome to My Thunkable App</h1>
-        <script type="module">
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-            // TODO: Add SDKs for Firebase products that you want to use
-            // https://firebase.google.com/docs/web/setup#available-libraries
-
-            // Your web app's Firebase configuration
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            const firebaseConfig = {
-                apiKey: "AIzaSyBzSeWWHocv5Sc4bQLC5cJ5PlgytsFhlPE",
-                authDomain: "profileapp-9f079.firebaseapp.com",
-                databaseURL: "https://profileapp-9f079-default-rtdb.firebaseio.com",
-                projectId: "profileapp-9f079",
-                storageBucket: "profileapp-9f079.appspot.com",
-                messagingSenderId: "304407488274",
-                appId: "1:304407488274:web:0793713041a75cfeccb5cb",
-                measurementId: "G-3D7MDT3QC3"
-            };
-
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-        </script>
-
-        <iframe src="https://thunkable.site/w/XkrcF_OLGSBSGy3EIGjyo" title="Profile App" height="1000" width="500"></iframe>
-
-    </body>
-    </html>
     
     <iframe src="https://thunkable.site/w/XkrcF_OLGSBSGy3EIGjyo" title="Profile App" height = 1000 width = 500></iframe>
-
 </body>
 </html>
+
+<!-- <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBzSeWWHocv5Sc4bQLC5cJ5PlgytsFhlPE",
+      authDomain: "profileapp-9f079.firebaseapp.com",
+      databaseURL: "https://profileapp-9f079-default-rtdb.firebaseio.com",
+      projectId: "profileapp-9f079",
+      storageBucket: "profileapp-9f079.appspot.com",
+      messagingSenderId: "304407488274",
+      appId: "1:304407488274:web:0793713041a75cfeccb5cb",
+      measurementId: "G-3D7MDT3QC3"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script> -->
